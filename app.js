@@ -122,7 +122,6 @@ var getTopanswerers = function(answerers) {
 		})
 	.done(function(result){
 		var searchResults = showTopanswer(request.user, result.items);
-		console.log(searchResults);
 
 		$('.search-results').html(searchResults);
 		console.log(searchResults);
