@@ -104,7 +104,7 @@ var getUnanswered = function(tags) {
 
 
 // Find top answerers 
-var getTopanswerers = function(tags) {
+var getTopanswerers = function(answerers) {
 
 
 
