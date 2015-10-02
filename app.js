@@ -12,7 +12,7 @@ $(document).ready( function() {
 		// zero out results if previous search has run
 		$('.results').html('');
 		// get the value of the tags the user submitted
-		var tags = $(this).find("input[name='answerers']").val();
+		var answerers = $(this).find("input[name='answerers']").val();
 		getTopanswerers(answerers);
 		console.log(answerers);
 	});
