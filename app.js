@@ -88,9 +88,13 @@ var getUnanswered = function(tags) {
 	});
 };
 
+//Get "inspired"
+
+
+
 
 // Find top answerers 
-var getTopansweres = function(tags) {
+var getTopanswerers = function(tags) {
 
 
 
@@ -101,18 +105,18 @@ var getTopansweres = function(tags) {
 								sort: 'creation'};
 	
 	var result = $.ajax({
-		url: "http://api.stackexchange.com/2.2/questions/unanswered",
+		url: //"http://api.stackexchange.com/2.2/questions/unanswered",
 		data: request,
 		dataType: "jsonp",
 		type: "GET",
 		})
 	.done(function(result){
-		var searchResults = showSearchResults(request.tagged, result.items.length);
+		var searchResults = showTopanswer(//request.tagged, result.items.length);
 
 		$('.search-results').html(searchResults);
 
 		$.each(result.items, function(i, item) {
-			var question = showQuestion(item);
+			var answerers = showTopanswer(item);
 			$('.results').append(question);
 		});
 	})
@@ -122,4 +126,24 @@ var getTopansweres = function(tags) {
 	});
 };
 
+var showTopanswer = function(question) {
+	
+	// clone our result template code
+	var result = $('.templates .top-answer').clone();
+	
+	// Set the Answerer property in result
+	var questionElem = result.find('.topName a');
+//	questionElem.attr('href', question.link);
+//	questionElem.text("need parameters");
 
+	// Return number of answers from Top answerer
+	var ansNum = result.find('.answersNum');
+//	var date = new Date(1000*question.creation_date);
+//	asked.text(date.toString());
+
+	// Return reputation of top answerer
+	var ansRep = result.find('.answererRep');
+//	viewed.text(question.view_count);
+
+	return result;
+};
