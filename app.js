@@ -109,7 +109,7 @@ var getTopanswerers = function(answerers) {
 
 
 // Get request to find the Top Answerers on a subject 
-	var request = {tagged: answerers,
+	var request = {tag: answerers,
 								site: 'stackoverflow',
 								order: 'desc',
 								sort: 'creation'};
@@ -121,7 +121,7 @@ var getTopanswerers = function(answerers) {
 		type: "GET",
 		})
 	.done(function(result){
-		var searchResults = showTopanswer(request.user, result.items);
+		var searchResults = showTopanswer(request.tag, result.items);
 
 		$('.search-results').html(searchResults);
 		console.log(searchResults);
@@ -137,15 +137,15 @@ var getTopanswerers = function(answerers) {
 	});
 };
 
-var showTopanswer = function(question) {
+ var showTopanswer = function(answers) {
 	
 	// clone our result template code
 	var result = $('.templates .top-answer').clone();
 	
 	// Set the Answerer property in result
 	var questionElem = result.find('.topName a');
-	questionElem.attr('href', question.link);
-//	questionElem.text("need parameters");
+	questionElem.attr('href', answers.link);
+	questionElem.text(answers.user_id);
 
 	// Return number of answers from Top answerer
 	var ansNum = result.find('.answersNum');
