@@ -115,7 +115,7 @@ var getTopanswerers = function(answerers) {
 								sort: 'creation'};
 	
 	var result = $.ajax({
-		url: "http://api.stackexchange.com/2.2/tags/top-answerers/all_time",
+		url: "https://api.stackexchange.com/2.2/tags/top-answerers/all_time",
 		data: request,
 		dataType: "jsonp",
 		type: "GET",
