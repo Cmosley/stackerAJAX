@@ -89,4 +89,37 @@ var getUnanswered = function(tags) {
 };
 
 
+// Find top answerers 
+var getTopansweres = function(tags) {
+
+
+
+// Get request to find the Top Answerers on a subject 
+	var request = {tagged: tags,
+								site: 'stackoverflow',
+								order: 'desc',
+								sort: 'creation'};
+	
+	var result = $.ajax({
+		url: "http://api.stackexchange.com/2.2/questions/unanswered",
+		data: request,
+		dataType: "jsonp",
+		type: "GET",
+		})
+	.done(function(result){
+		var searchResults = showSearchResults(request.tagged, result.items.length);
+
+		$('.search-results').html(searchResults);
+
+		$.each(result.items, function(i, item) {
+			var question = showQuestion(item);
+			$('.results').append(question);
+		});
+	})
+	.fail(function(jqXHR, error, errorThrown){
+		var errorElem = showError(error);
+		$('.search-results').append(errorElem);
+	});
+};
+
 
