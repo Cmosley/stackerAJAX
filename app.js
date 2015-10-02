@@ -5,6 +5,7 @@ $(document).ready( function() {
 		// get the value of the tags the user submitted
 		var tags = $(this).find("input[name='tags']").val();
 		getUnanswered(tags);
+		console.log(tags);
 	});
 
 	$('.inspiration-getter').submit( function(event){
@@ -13,6 +14,7 @@ $(document).ready( function() {
 		// get the value of the tags the user submitted
 		var tags = $(this).find("input[name='answerers']").val();
 		getTopanswerers(answerers);
+		console.log(answerers);
 	});
 });
 
