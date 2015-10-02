@@ -11,8 +11,8 @@ $(document).ready( function() {
 		// zero out results if previous search has run
 		$('.results').html('');
 		// get the value of the tags the user submitted
-		var tags = $(this).find("input[name='tags']").val();
-		getTopanswerers(tags);
+		var tags = $(this).find("input[name='answerers']").val();
+		getTopanswerers(answerers);
 	});
 });
 
@@ -119,9 +119,9 @@ var getTopanswerers = function(tags) {
 		type: "GET",
 		})
 	.done(function(result){
-		var searchResults = showTopanswer(request.tagged, result.items.length);
-		
-		
+		var searchResults = showTopanswer(request.user, result.items.length);
+		console.log(searchResults);
+
 		$('.search-results').html(searchResults);
 
 		$.each(result.items, function(i, item) {
