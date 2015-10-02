@@ -109,7 +109,7 @@ var getTopanswerers = function(answerers) {
 
 
 // Get request to find the Top Answerers on a subject 
-	var request = {tagged: tags,
+	var request = {tagged: answerers,
 								site: 'stackoverflow',
 								order: 'desc',
 								sort: 'creation'};
