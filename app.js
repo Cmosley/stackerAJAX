@@ -86,6 +86,8 @@ var getUnanswered = function(tags) {
 		var searchResults = showSearchResults(request.tagged, result.items.length);
 
 		$('.search-results').html(searchResults);
+				console.log(searchResults);
+
 
 		$.each(result.items, function(i, item) {
 			var question = showQuestion(item);
@@ -109,26 +111,28 @@ var getTopanswerers = function(answerers) {
 
 
 // Get request to find the Top Answerers on a subject 
-	var request = {tag: answerers,
+	var request = {
 								site: 'stackoverflow',
 								order: 'desc',
 								sort: 'creation'};
 	
 	var result = $.ajax({
-		url: "https://api.stackexchange.com/2.2/tags/top-answerers/all_time",
+		url: "https://api.stackexchange.com/2.2/tags/"+answerers+"/top-answerers/all_time",
 		data: request,
 		dataType: "jsonp",
 		type: "GET",
 		})
 	.done(function(result){
-		var searchResults = showTopanswer(request.tag, result.items);
+		console.log(result);
+		var searchResults = showSearchResults(answerers, result.items.length);
 
 		$('.search-results').html(searchResults);
 		console.log(searchResults);
+		
 
 		$.each(result.items, function(i, item) {
-			var answerers = showTopanswer(item);
-			$('.results').append(answerers);
+			var question = showTopanswer(item);
+			$('.results').append(question);
 		});
 	})
 	.fail(function(jqXHR, error, errorThrown){
@@ -137,19 +141,19 @@ var getTopanswerers = function(answerers) {
 	});
 };
 
- var showTopanswer = function(answers) {
+ var showTopanswer = function(question) {
 	
 	// clone our result template code
 	var result = $('.templates .top-answer').clone();
 	
 	// Set the Answerer property in result
 	var questionElem = result.find('.topName a');
-	questionElem.attr('href', answers.link);
-	questionElem.text(answers.user_id);
+	questionElem.attr('href', question.link);
+	questionElem.text(question.user.display_name);
 
 	// Return number of answers from Top answerer
 	var ansNum = result.find('.answersNum');
-//	var date = new Date(1000*question.creation_date);
+	var date = new Date(1000*question.creation_date);
 //	asked.text(date.toString());
 
 	// Return reputation of top answerer
