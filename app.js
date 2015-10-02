@@ -119,8 +119,9 @@ var getTopanswerers = function(tags) {
 		type: "GET",
 		})
 	.done(function(result){
-		var searchResults = showTopanswer(//request.tagged, result.items.length);
-
+		var searchResults = showTopanswer(request.tagged, result.items.length);
+		
+		
 		$('.search-results').html(searchResults);
 
 		$.each(result.items, function(i, item) {
