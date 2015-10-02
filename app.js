@@ -6,6 +6,14 @@ $(document).ready( function() {
 		var tags = $(this).find("input[name='tags']").val();
 		getUnanswered(tags);
 	});
+
+	$('.inspiration-getter').submit( function(event){
+		// zero out results if previous search has run
+		$('.results').html('');
+		// get the value of the tags the user submitted
+		var tags = $(this).find("input[name='tags']").val();
+		getTopanswerers(tags);
+	});
 });
 
 // this function takes the question object returned by StackOverflow 
@@ -105,7 +113,7 @@ var getTopanswerers = function(tags) {
 								sort: 'creation'};
 	
 	var result = $.ajax({
-		url: //"http://api.stackexchange.com/2.2/questions/unanswered",
+		url: "http://api.stackexchange.com/2.2/tags/top-answerers/all_time",
 		data: request,
 		dataType: "jsonp",
 		type: "GET",
