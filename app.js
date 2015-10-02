@@ -121,14 +121,15 @@ var getTopanswerers = function(answerers) {
 		type: "GET",
 		})
 	.done(function(result){
-		var searchResults = showTopanswer(request.user, result.items.length);
+		var searchResults = showTopanswer(request.user, result.items);
 		console.log(searchResults);
 
 		$('.search-results').html(searchResults);
+		console.log(searchResults);
 
 		$.each(result.items, function(i, item) {
 			var answerers = showTopanswer(item);
-			$('.results').append(question);
+			$('.results').append(answerers);
 		});
 	})
 	.fail(function(jqXHR, error, errorThrown){
@@ -144,7 +145,7 @@ var showTopanswer = function(question) {
 	
 	// Set the Answerer property in result
 	var questionElem = result.find('.topName a');
-//	questionElem.attr('href', question.link);
+	questionElem.attr('href', question.link);
 //	questionElem.text("need parameters");
 
 	// Return number of answers from Top answerer
