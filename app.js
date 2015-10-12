@@ -1,5 +1,5 @@
 $(document).ready( function() {
-	$('.unanswered-getter').submit( function(event){
+	$('.unanswered-getter').submit(function(event){
 		// zero out results if previous search has run
 		$('.results').html('');
 		// get the value of the tags the user submitted
@@ -153,12 +153,13 @@ var getTopanswerers = function(answerers) {
 
 	// Return number of answers from Top answerer
 	var ansNum = result.find('.answersNum');
-	var date = new Date(1000*question.creation_date);
-//	asked.text(date.toString());
+	ansNum.text(question.post_count);
+
 
 	// Return reputation of top answerer
 	var ansRep = result.find('.answererRep');
-//	viewed.text(question.view_count);
+	ansRep.text(question.user.reputation);
+
 
 	return result;
 };
