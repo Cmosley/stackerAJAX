@@ -148,7 +148,8 @@ var getTopanswerers = function(answerers) {
 	
 	// Set the Answerer property in result
 	var questionElem = result.find('.topName a');
-	questionElem.attr('href', question.link);
+	questionElem.attr('href', question.user.link);
+	alert(question.link);
 	questionElem.text(question.user.display_name);
 
 	// Return number of answers from Top answerer
